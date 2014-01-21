@@ -24,7 +24,7 @@ This project contains multiple chapters covering the various ColdFusion UI tags.
 
 * It will discuss one replacement for the tag. See the final bullet point for alternatives.
 * It will discuss most, but not all, of the original tags functionality. This guide isn't meant to show you how to replicate 100% of a particular tag, but rather to give you an idea of how you can do it yourself and demonstrate the most popular features of that tag.
-* Each chapter will contain various demos you can yourself. These demos will work in the latest version of ColdFusion and will not require any setup. (Demos with query data will use fake data.)
+* Each chapter will contain various demos you can run yourself. These demos will work in the latest version of ColdFusion and will not require any setup. (Demos with query data will use fake data.)
 * At the end of each chapter, a list of alternatives will be supplied.
 
 Want to Help?
