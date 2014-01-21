@@ -3,7 +3,7 @@ Introduction
 
 Many years ago, the browser wars raged across the landscape. Developers were forced to use non-standard extensions that worked radically different across other platforms and operating systems - if they worked at all. Doing anything fancy (shiny!) in the browser was a painful process best compared to slowly pulling out your finger nails. 
 
-In the midst of this chaos ColdFusion threw a life preserver. It began to offer client side functionaly meant to simplify the pain of front end development. Tags like cfgrid were updated from their ancient Java applet roots to support pure HTML, JavaScript, and CSS implementations. It was awesome. Everything worked perfectly. Bells rang. Beer flowed. The end.
+In the midst of this chaos ColdFusion threw a life preserver. It began to offer client side functionality meant to simplify the pain of front end development. Tags like cfgrid were updated from their ancient Java applet roots to support pure HTML, JavaScript, and CSS implementations. It was awesome. Everything worked perfectly. Bells rang. Beer flowed. The end.
 
 Until... that same developer needed to *slightly* tweak the control. Luckily the UI controls provided arguments for modifying the look and feel of the controls.
 
