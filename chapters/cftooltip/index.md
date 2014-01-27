@@ -89,6 +89,8 @@ Now let's take that same example and make it dynamic. In listing 2, we've got a 
 
 As you can see, this follows the same format as the static example. We've got a DOM item, in this case an h1 tag, with a title attribute that is normally hidden from view. jQuery UI takes over the normal hover effect and replaces it with styled tooltip window based on the dynamic data we used in the title attribute. 
 
+![Tooltip effect based on ColdFusion code](images/shot2.png)
+
 Now lets take it up a notch. The jQuery UI tooltip allows for customization of the look and feel of the tooltip as well as it how it interacts with the mouse. This is all covered in the documentation. We're going to look at something else - AJAX integration. In the previous examples, the data for the tooltip was embedded in the DOM itself. You don't have to do that, however, you can just as easily bind the tooltip to an AJAX result. Let's look  at an example in listing 3.
 
 **Listing 3 : test3.cfm**
@@ -151,6 +153,7 @@ This version is a bit more complex. Notice that the JavaScript code has been mod
 	
 	}
 
+![Ajax-based tooltip](images/shot3.png)
 
 Alternatives
 ---
