@@ -13,7 +13,7 @@ Except... later on when ColdFusion was updated, the JavaScript library used by t
 
 You get the idea. What's a poor developer to do?
 
-Simple. Learn JavaScript. Learn CSS. Don't rely on abstractions. To be clear, sometimes abstractions make sense. It is awesome the ColdFusion handles database pooling and connections for you. You don't want to write those libraries. But everything these UI tags do are things that are *easily* learnable by a developer. In fact, those of us behind this project would argue *strongly* that these are critical skills that every web developer should know already. 
+Simple. Learn JavaScript. Learn CSS. Don't rely on abstractions. To be clear, sometimes abstractions make sense. It is awesome that ColdFusion handles database pooling and connections for you. You don't want to write those libraries. But everything these UI tags do are things that are *easily* learnable by a developer. In fact, those of us behind this project would argue *strongly* that these are critical skills that every web developer should know already. 
 
 It is time to stop hiding from JavaScript and just learn it. This is where this project comes in.
 
