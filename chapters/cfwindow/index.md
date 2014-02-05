@@ -10,7 +10,7 @@ The &lt;cfwindow&gt; tag provides the ability to create a modal dialog. As an ex
     
 When the user clicks on the button, it displays a dialog on the screen. The content of the dialog can be a defined between the opening and closing &lt;cfwindow&gt; tags, or loaded from a remote file via the "source" attribute. Other attributes include basic styling options.
 
-For this example, we will make use of the [Bootstrap Modal](http://getbootstrap.com/javascript/#modals) plugin. Bootstrap is a lightweight framework of CSS and minimal JavaScript, allowing you to create dynamic interfaces with very little code, and focusing more on convention over configuration. For this example, we will use a CDM (Content Delivery Network) to include the necessary jQuery and Bootstrap files. In this demo, no additional scripting is required.
+For this example, we will make use of the [Bootstrap Modal](http://getbootstrap.com/javascript/#modals) plugin. Bootstrap is a lightweight framework of CSS and minimal JavaScript, allowing you to create dynamic interfaces with very little code, and focusing more on convention over configuration. For this example, we will use a CDN (Content Delivery Network) to include the necessary jQuery and Bootstrap files. In this demo, no additional scripting is required.
 
 **Listing 1 : index.cfm**
 
