@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$.getJSON(
-		"lib/cfml/DAO.cfc?method=getDataForJSVersion",
+		"DAO.cfc?method=getDataForJSVersion",
 		function(data){
 			applyLabels(data.records);
 			zingchart.render(configureChartParams(data));	
