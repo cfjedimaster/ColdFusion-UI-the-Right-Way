@@ -1,4 +1,4 @@
-<cfset records = new lib.cfml.DAO().getDataForCfmlVersion()>
+<cfset records = new DAO().getDataForCfmlVersion()>
 <cfset seriesColours = ["Green","Yellow","Purple"]>
 <cfset seriesColour = 1>
 <cfchart chartwidth="500" chartheight="375" seriesplacement="stacked" format="html">

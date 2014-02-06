@@ -15,15 +15,15 @@ The `<cfchart>` tag provides the ability to create charts in CFML. As a very min
 ![Minimal example](images/minimal.png "Minimal example")
 	
 	
-`<cfchart>` can implement charts as images in JPG or PNG format, as well as Flash, and - the focus of this chapter - JS/CSS/HTML.
+`<cfchart>` can implement charts as images in JPG or PNG format, as well as Flash, and - the focus of this chapter - JS/CSS/HTML. In versions of ColdFusion from 6.x to 9.x the chart engine was restricted to server-side-generated JPG/PNG/Flash-based charts; ColdFusion 10 added client-side charting capabilities.
 
-For this chapter we will make use of the [ZingCharts](http://www.zingchart.com/) library, which is the same library ColdFusion uses. However we will simply use ZingCharts directly. Coincidentally the examples will also use JQuery to provide AJAX access to the data for the example, but this is just to demonstrate separation of model and view concerns, and is not a requirement of ZingCharts itself.
+For this chapter we will make use of the [ZingCharts](http://www.zingchart.com/) library, which is the same library ColdFusion uses. However we will simply use ZingCharts directly. Coincidentally the examples will also use jQuery to provide AJAX access to the data for the example, but this is just to demonstrate separation of model and view concerns, and is not a requirement of ZingCharts itself. Please note that only ColdFusion 10 *enterprise* includes licensing for ZingCharts; if one is not using that version, a separate licence will be required from ZingCharts. For unlicensed developmental purposes ZingCharts is fully-functional, but includes a watermark, which is removed once a licence is applied.
 
 As a baseline, here is how one might implement a quick stacked bar chart with `<cfchart>`:
 
 **Listing 2 : cfchart.cfm**
     
-    <cfset records = new lib.cfml.DAO().getDataForCfmlVersion()>
+    <cfset records = new DAO().getDataForCfmlVersion()>
 	<cfset seriesColours = ["Green","Yellow","Purple"]>
 	<cfset seriesColour = 1>
 	<cfchart chartwidth="1000" chartheight="750" seriesplacement="stacked" format="html">
@@ -61,7 +61,7 @@ Now here is an analogous chart, totally written in simple HTML and JavaScript.
     
 	$(document).ready(function(){
 		$.getJSON(
-			"lib/cfml/DAO.cfc?method=getDataForJSVersion",
+			"DAO.cfc?method=getDataForJSVersion",
 			function(data){
 				applyLabels(data.records);
 				zingchart.render(configureChartParams(data));	
@@ -150,9 +150,13 @@ For completeness, here is the code for `DAO.cfc`:
         }
     }
 
+Resources
+---
+* [ZingCharts API documentation](http://www.zingchart.com/learn/docs.php)
+* [ZingChart Online Chart Builder](http://www.zingchart.com/builder/): design and build your chart using a GUI, which generates all the code necessary to render the chart.
+
+
 Alternatives
 ---
 
 * TBC
-
-
