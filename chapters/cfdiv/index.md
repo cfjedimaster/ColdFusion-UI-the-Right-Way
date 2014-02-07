@@ -8,7 +8,7 @@ cfdiv
     <cfdiv bind="url:cfdiv-source.cfm" id="exampleContents" />
     
 
-**Listing 2: CFM page containing loaded content - *cfdiv-source.cfm* **
+**Listing 2: CFM page containing loaded content - cfdiv-source.cfm**
 
     <cfscript>
 
