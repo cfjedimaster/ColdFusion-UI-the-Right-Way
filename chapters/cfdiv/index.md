@@ -276,6 +276,10 @@ You might be wondering what that data looks like. It is a JSON object, and is ve
 
 As you can see each key name being referenced in the object named *data* exists as a key in the JSON object being returned from ColdFusion.
 
+Finally here is a screenshot of the final result. Once again it looks very much like the other two.
+
+![Screenshot for Listing 5](images/cfdiv-listing-5.png "Screenshot for Listing 5")
+
 
 ## Additional References and Info
 
