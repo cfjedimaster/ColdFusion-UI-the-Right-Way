@@ -62,7 +62,7 @@ cfdiv
 In this chapter we will demonstrate loading dynamic content using jQuery. We will show two versions of loading dynamic content. The first is a fairly direct conversion which will load the HTML directly into a *&lt;div&gt;* tag. The second version will retrieve JSON (JavaScript Object Notation) content and update parts of the HTML page. Both of these examples will include CSS and markup using Twitter's excellent [Bootstrap](http://getbootstrap.com) framework.
 
 ### Direct Conversion
-This first example will demonstrate loading dynamic, remote HTML content from a CFM file and placing those contents into a *&lt;div&gt;*. To begin we will start with the shell for our HTML. Here we will include the necessary Bootstrap CSS file and the jQuery JavaScript file. For now we will pull these from external CDNs (Content Delivery Network). 
+This first example will demonstrate loading dynamic, remote HTML content from a CFM file and placing those contents into a *&lt;div&gt;*. This example demonstrates creating an HTML page which not only includes the necessary Bootstrap CSS file and the jQuery JavaScript file, but also the JavaScript necessary to load the remote HTML content. jQuery and Bootstrap will be loaded from external CDNs (Content Delivery Network). 
 
 **Listing 3: Populate *&lt;div&gt;* using jQuery**
 
