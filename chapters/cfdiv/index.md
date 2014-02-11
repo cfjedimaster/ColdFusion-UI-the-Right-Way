@@ -1,7 +1,7 @@
 cfdiv
 =====
 
-*&lt;cfdiv&gt;* is ColdFusion UI tag which provides the ability to load external content on to your page. This tag also offers data-binding to HTML controls to automatically pass data between a bound control and the remote CFM or CFC. The following example illustrates a simple case of using *&lt;cfdiv&gt;* to load external content from a CFM page as well as the CFM page itself.
+*&lt;cfdiv&gt;* is a ColdFusion UI tag which provides the ability to load external content on to your page. This tag also offers data-binding to HTML controls to automatically pass data between a bound control and the remote CFM or CFC. The following example illustrates a simple case of using *&lt;cfdiv&gt;* to load external content from a CFM page as well as the CFM page itself.
 
 **Listing 1: Simple *&lt;cfdiv&gt;* example**
 
