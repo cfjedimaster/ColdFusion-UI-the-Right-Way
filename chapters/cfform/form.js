@@ -1,0 +1,1 @@
+$('form').attr('method','post');
