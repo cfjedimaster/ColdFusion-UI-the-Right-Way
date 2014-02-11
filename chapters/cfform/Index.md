@@ -53,7 +53,7 @@ cfform
 
 ## An Alternative
 
-In this chapter we will demonstrate how to no longer rely on cfform.
+In this chapter we will demonstrate how to no longer rely on cfform's default method="post".
 
 ### Default method
 cfform defaults to method="post" while a regular HTML form tag defaults to method="get".
