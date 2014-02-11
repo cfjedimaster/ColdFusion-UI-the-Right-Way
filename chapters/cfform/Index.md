@@ -100,8 +100,8 @@ cfform defaults to method="post" while a regular HTML form tag defaults to metho
     </body>
     </html>
     
-  form.js:
-  $('form').attr('method','post');
+    form.js:
+    $('form').attr('method','post');
     
 
 Let's review the more important parts of this. First we must ensure we have included the jQuery library. 
