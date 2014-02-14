@@ -1,0 +1,50 @@
+/* INITIAL SETTINGS */
+ul#nav, ul#nav ul.sub-nav {
+    padding:0;
+    margin: 0;
+}
+ul#nav li, ul#nav ul.sub-nav li {
+    list-style-type: none;
+    display: inline-block;
+        /* FOR VERTICAL NAV */
+        /*float:left;*/
+}
+/* STYLE THE LINKS */
+ul#nav li a, ul#nav li ul.sub-nav li a {
+    text-decoration: none;
+    color: #fff;
+    background: silver;
+    padding: 5px;           
+    display:inline-block;
+    width: 150px;
+}
+/* PARENT */
+ul#nav li {
+    position: relative;
+    clear: both;
+}
+/* SUB-NAV */
+ul#nav li ul.sub-nav {
+    display:none;
+    position: absolute;
+        /* FOR VERTICAL NAV */
+        /*top: 0px;*/
+    left: 0;
+    width: 150px;
+    background: silver;
+        /* FOR VERTICAL NAV */
+        /*margin: 0px 0px 0px 85px;*/
+}
+ul#nav li:hover ul.sub-nav {
+    display:block;
+        /* FOR VERTICAL NAV */
+        /*left: 75px;*/
+
+}
+/* HOVER STATES */
+ul#nav li a:hover {
+    color: #000;
+}
+ul#nav li ul.sub-nav a:hover {
+     color: #000;
+}
