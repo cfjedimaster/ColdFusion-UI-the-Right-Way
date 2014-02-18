@@ -95,7 +95,7 @@ Then we wrote an event listener to an external script that we included.
     
 For finer degrees of control, one can bind to a tab's "show.bs.tab" or "shown.bs.tab" events, to further control content and actions. All events are namespaced, to assist in preventing broadcast collisions, and further define control.
 
-Bootstrap's tab styling is pretty sparse, and some prefer styles similar to those of [ExtJS]() or [jQueryUI](http://jqueryui.com). Bootstrap is [easily skinned](http://www.cutterscrossing.com/index.cfm/2013/5/20/Skinning-Bootstrap-Tabs). In this example, let's add an override stylesheet.
+Bootstrap's tab styling is pretty sparse, and some prefer styles similar to those of [ExtJS](http://www.sencha.com/products/extjs/) or [jQueryUI](http://jqueryui.com). Bootstrap is [easily skinned](http://www.cutterscrossing.com/index.cfm/2013/5/20/Skinning-Bootstrap-Tabs). In this example, let's add an override stylesheet.
 
 **Listing 3 : alt_tablayout.css**
 
@@ -179,4 +179,4 @@ The resulting tab set is a little more visually dilineated.
 Alternatives
 ---
 
-* [jQueryUI Dialog](http://jqueryui.com/dialog/)
+* [jQueryUI Tabs](http://jqueryui.com/tabs/)
