@@ -60,7 +60,7 @@ The following is an HTML5 implementation.
     </body>
     </html>
 
-![HTML5 Examaple](images/date1.png)
+![JavaScript Example](images/date1.png)
 
 Well that was easy but it won't work in legacy browsers.
 
@@ -117,4 +117,9 @@ For further information you can reference :-
 * [CFCALENDAR](http://livedocs.adobe.com/coldfusion/8/htmldocs/help.html?content=Tags_c_02.html)
 * [JQUERY](http://jquery.com/)
 * [JQUERY UI](http://jqueryui.com)
+
+Alternatives
+---
+
+* Don't forget that many modern browsers support input type="date". This requires no JavaScript at all and falls back to a regular text field that can still be edited by the user.
 
