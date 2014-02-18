@@ -1,16 +1,26 @@
-cfwindow
+cflayout Tabs
 ===
 
-The &lt;cfwindow&gt; tag provides the ability to create a modal dialog. As an example:
+The &lt;cflayout&gt; tag is an unfortunate layout catchall, with many different configurations, on of which provides the ability to create tabbed interfaces. As an example:
 
-    <input type="button" name="mybutton" value="Show Dialog" onclick="javascript:ColdFusion.Window.show('myWindow')">
-    <cfwindow name="myWindow" title="This is my modal dialog" center="true">
-        I have some content right here <cfoutput>#Now()#</cfoutput>
-    </cfwindow>
+    <cflayout type="tab" tabHeight="200">
+        <cflayoutarea title="Static">
+            Some text in the first tab<br /><br />
+            <cflayout type="tab" tabHeight="100">
+                <cflayoutarea title="Mouse" style="background-color:##00FFFF;" >
+                    Mickey Mouse
+                </cflayoutarea>
+                <cflayoutarea title="Duck">
+                    Donald Duck
+                </cflayoutarea>
+            </cflayout>
+        </cflayoutarea>
+        <cflayoutarea title="Dynamic" source="mycontent.cfm" refreshOnActivate="true" />
+    </cflayout>
     
-When the user clicks on the button, it displays a dialog on the screen. The content of the dialog can be a defined between the opening and closing &lt;cfwindow&gt; tags, or loaded from a remote file via the "source" attribute. Other attributes include basic styling options.
+When the user opens the page, it loads a tabbed interface. Clicking on a tab will open the content of that tab The content of the "Dynamic" tab is loaded from a remote file via the "source" attribute. Other attributes include basic styling options.
 
-For this example, we will make use of the [Bootstrap Modal](http://getbootstrap.com/javascript/#modals) plugin. Bootstrap is a lightweight framework of CSS and minimal JavaScript, allowing you to create dynamic interfaces with very little code, and focusing more on convention over configuration. For this example, we will use a CDN (Content Delivery Network) to include the necessary jQuery and Bootstrap files. In this demo, no additional scripting is required.
+For this example, we will make use of the [Bootstrap Tabs](http://getbootstrap.com/javascript/#tabs) plugin. Bootstrap is a lightweight framework of CSS and minimal JavaScript, allowing you to create dynamic interfaces with very little code, and focusing more on convention over configuration. For this example, we will use a CDN (Content Delivery Network) to include the necessary jQuery and Bootstrap files. In this demo, we use some minimal scripting to listen for the "show" event of a tab, to determine if we must load remote content. While slightly more manual, it does give a much finer degree of control, and the background scripts and css are much less.
 
 **Listing 1 : index.cfm**
 
@@ -20,78 +30,151 @@ For this example, we will make use of the [Bootstrap Modal](http://getbootstrap.
             <meta charset="utf-8">
             <title>Test1</title>
             <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+            <style>
+                body {margin: 20px;}
+            </style>
         </head>
         <body>
-            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                Launch demo modal
-            </button>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>I have some content right here <cfoutput>#Now()#</cfoutput></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+            <ul class="nav nav-tabs" id="myTab">
+              <li class="active"><a href="#static" data-toggle="tab">Static</a></li>
+              <li><a href="mycontent.cfm" data-target="#dynamic" data-remote-target="true" data-toggle="tab">Dynamic</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="static">
+                <p>Some text in the first tab</p>
+                <ul class="nav nav-tabs" id="myTab2">
+                  <li class="active"><a href="#mouse" data-toggle="tab">Mouse</a></li>
+                  <li><a href="#duck" data-toggle="tab">Duck</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane active" id="mouse">
+                    <p>Micky Mouse</p>
+                  </div>
+                  <div class="tab-pane" id="duck">
+                    <p>Donald Duck</p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="dynamic">
+                  Loading ...
+              </div>
+            </div>
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
             <script src="https://code.jquery.com/jquery.js"></script>
             <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+            <script src="resources/tabscript.js"></script>
         </body>
     </html>
 
-Use of Bootstrap requires the use of the Bootstrap CSS file, jQuery, and the Bootstrap JS file. Bootstrap uses data attributes (it's options preceded by _data-_) to define the options of the plugin, or an optional configuration within script. The aria attributes (those preceded by _aria-_) are optional, and are used by assistive devices.
+Use of Bootstrap requires the use of the Bootstrap CSS file, jQuery, and the Bootstrap JS file. Bootstrap uses data attributes (it's options preceded by _data-_) to define the options of the plugin, or an optional configuration within script.
 
-![Bootstrap Modal 1](images/Bootstrap_Modal_1.gif)
+![Bootstrap Tabs 1](images/Bootstrap_Tab_1.jpg)
 
-Like &lt;cfwindow&gt;, you can pull remote content in to your dialog. In your base file, you only include the trigger and the base modal container.
+Like &lt;cflayout&gt;, you can pull remote content in to your tabs. In your base file we included an additional attribute.
 
 **Listing 2 : index.cfm - remote dialog code**
 
-    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal2" data-remote="mycontent2.cfm">
-        Launch remote demo modal
-    </button>
-    <div class="modal fade" id="myModal2" role="dialog"></div>
+    <li><a href="mycontent.cfm" data-target="#dynamic" data-remote-target="true" data-toggle="tab">Dynamic</a></li>
     
-The, in your remote file you include the header, content, and footer for your modal.
+Then we wrote an event listener to an external script that we included.
 
-**Listing 3 : mycontent2.cfm**
+**Listing 3 : tabscript.js**
 
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Modal Remote Title</h4>
-            </div>
-            <div class="modal-body">
-                <cfoutput>This is my <b>remote</b> content #Now()#</cfoutput>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-    
-![Bootstrap Modal Remote Content](images/Bootstrap_Modal_2.gif)
-    
-For finer degrees of control, one can bind to a modal's "shown.bs.modal" or "hidden.bs.modal", or others, to further control content and actions. All events are namespaced, to assist in preventing broadcast collisions, and further define control.
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+      var $target = $(e.target)
+          , href = $target.attr("href")
+          , tData = $target.data()
+          , isRemote = tData.remoteTarget;
 
-    <script>
-        $('#myModal').on('shown.bs.modal', function (e) {
-            // do something...
-        });
-    </script>
+      if (isRemote != undefined && isRemote) {
+          $(tData.target).load(href);
+      }
+    });
     
-For supporting advanced options, such as modal stacking, convention width/height, and more, you may want to include the [Bootstrap Modal Manager](https://github.com/jschr/bootstrap-modal) plugin. To make your JS alert, confirm, and prompt dialogs consistent with your application, you can also include the [BootboxJS](http://bootboxjs.com) plugins. Bootstrap does not support draggable or manually resizable modals at this time.
+![Bootstrap Tab Remote Content](images/Bootstrap_Tab_2.jpg)
+    
+For finer degrees of control, one can bind to a tab's "show.bs.tab" or "shown.bs.tab" events, to further control content and actions. All events are namespaced, to assist in preventing broadcast collisions, and further define control.
+
+Bootstrap's tab styling is pretty sparse, and some prefer styles similar to those of [ExtJS]() or [jQueryUI](http://jqueryui.com). Bootstrap is [easily skinned](http://www.cutterscrossing.com/index.cfm/2013/5/20/Skinning-Bootstrap-Tabs). In this example, let's add an override stylesheet.
+
+**Listing 3 : alt_tablayout.css**
+
+    /* Tab Theming Overrides */
+    /* Add a tab container class, for a border around the entire tabset */
+    .nav-tabs-container {
+      padding: 3px;
+      border: 1px solid #999999;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+    }
+    .nav-tabs {
+      border: 1px solid #999999;
+      padding: 4px 3px 0 3px;
+      margin-bottom: 5px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      background-color: #cccccc;
+      background-image: -moz-linear-gradient(top, #eeeeee, #999999);
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#eeeeee), to(#999999));
+      background-image: -webkit-linear-gradient(top, #eeeeee, #999999);
+      background-image: -o-linear-gradient(top, #eeeeee, #999999);
+      background-image: linear-gradient(to bottom, #eeeeee, #999999);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeeeee', endColorstr='#ff999999', GradientType=0);
+    }
+    .nav-tabs > li > a {
+      line-height: 10px;
+      background-color: #eeeeee;
+      border: none;
+      outline: 0;
+    }
+    .nav-tabs > li > a:hover,
+    .nav-tabs > li > a:focus {
+      border-style: solid;
+      border-width: 1px 1px 0;
+      border-color: #999999 #999999 transparent;
+    }
+    .nav-tabs > li > a:link,
+    .nav-tabs > li > a:active,
+    .nav-tabs > li > a:visited,
+    .nav-tabs > li > a:hover,
+    .nav-tabs > li > a:focus {
+      color: #555555;
+    }
+    .nav-tabs > li:not(.active) > a:hover,
+    .nav-tabs > li:not(.active) > a:focus {
+      padding: 7px 11px;
+    }
+    .nav-tabs > .active > a,
+    .nav-tabs > .active > a:hover,
+    .nav-tabs > .active > a:focus {
+      border-style: solid;
+      border-width: 1px 1px 0;
+      border-color: #999999 #999999 transparent;
+    }
+
+Then we just wrap our individual tab sets in a container div.
+
+    <div class="nav-tabs-container">
+        <ul class="nav nav-tabs" id="myTab2">
+          <li class="active"><a href="#mouse" data-toggle="tab">Mouse</a></li>
+          <li><a href="#duck" data-toggle="tab">Duck</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="mouse">
+            <p>Micky Mouse</p>
+          </div>
+          <div class="tab-pane" id="duck">
+            <p>Donald Duck</p>
+          </div>
+        </div>
+    </div>
+    
+The resulting tab set is a little more visually dilineated.
+
+![Bootstrap Tab Styled](images/Bootstrap_Tab_3.jpg)
 
 Alternatives
 ---
