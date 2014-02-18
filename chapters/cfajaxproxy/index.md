@@ -1,116 +1,95 @@
-cfchart
+cfajaxproxy
 ===
 
-The `<cfchart>` tag provides the ability to create charts in CFML. As a very minimal example:
+The `<cfajaxproxy>` tag provides the ability to create a JavaScript proxy "class" which can be used to create proxy objects which in turn proxy for a ColdFusion CFC back on the ColdFusion server. This means JavaScript code can call methods on the JavaScript object, which will - in effect - execute functionality on the ColdFusion server.
 
-**Listing 1 : min.cfm**
+Here is a very basic demonstration of using `<cfajaxproxy>` to create a JavaScript proxy object to fetch data from the ColdFusion server:
 
-    <cfchart format="html">
-	    <cfchartseries type="Bar" label="Numbers">
-	         <cfchartdata item="e" value="2.71828">
-            <cfchartdata item="&pi;" value="3.14159">
-        </cfchartseries>
-    </cfchart>
-
-![Minimal example](images/minimal.png "Minimal example")
-	
-	
-`<cfchart>` can implement charts as images in JPG or PNG format, as well as Flash, and - the focus of this chapter - JS/CSS/HTML. In versions of ColdFusion from 6.x to 9.x the chart engine was restricted to server-side-generated JPG/PNG/Flash-based charts; ColdFusion 10 added client-side charting capabilities.
-
-For this chapter we will make use of the [ZingCharts](http://www.zingchart.com/) library, which is the same library ColdFusion uses. However we will simply use ZingCharts directly. Coincidentally the examples will also use jQuery to provide AJAX access to the data for the example, but this is just to demonstrate separation of model and view concerns, and is not a requirement of ZingCharts itself. Please note that only ColdFusion 10 *enterprise* includes licensing for ZingCharts; if one is not using that version, a separate licence will be required from ZingCharts. For unlicensed developmental purposes ZingCharts is fully-functional, but includes a watermark, which is removed once a licence is applied.
-
-As a baseline, here is how one might implement a quick stacked bar chart with `<cfchart>`:
-
-**Listing 2 : cfchart.cfm**
-    
-    <cfset records = new DAO().getDataForCfmlVersion()>
-	<cfset seriesColours = ["Green","Yellow","Purple"]>
-	<cfset seriesColour = 1>
-	<cfchart chartwidth="1000" chartheight="750" seriesplacement="stacked" format="html">
-		<cfloop query="records" group="item">
-			<cfchartseries type="Bar" label="#item#" seriescolor="#seriesColours[seriesColour++]#">
-				<cfloop>
-					<cfchartdata item="#day#" value="#total#">
-				</cfloop>
-			</cfchartseries>
-		</cfloop>
-	</cfchart>
-
-With the data returned from the DAO, this renders:
-
-![&lt;cfchart&gt;](images/cfchart.png "&lt;cfchart&gt;")
-
-
-Now here is an analogous chart, totally written in simple HTML and JavaScript. 
-
-**Listing 3 : zingChart.html**
+**Listing 1 : cfajaxproxy.cfm**
     
     <!doctype html>
-    <html>
-        <head>
-            <script type="text/javascript" src="lib/js/zingchart_trial/html5_scripts/zingchart-html5-min.js"></script>
-            <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-        </head>
-        <body>
-            <div id="myChartDiv"></div>
-        </body>
-        <script type="text/javascript" src="lib/js/renderChart.js"></script>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>&lt;cfajaxproxy&gt; demo</title>
+        <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+        <script src="lib/js/renderData.js"></script>
+        <cfajaxproxy cfc="DAO" jsclassname="DAOProxy">
+    </head>
+    <body>
+        <div id="data-goes-here"></div>
+        <script src="cfajaxproxy.js"></script>
+    </body>
     </html>
 
-**Listing 4 : renderChart.js**
+Note that even with the `<cfajaxproxy>` tag, one still needs to use JavaScript to *use* the proxy:
+
+**Listing 2 : cfajaxproxy.js**
     
-	$(document).ready(function(){
-		$.getJSON(
-			"DAO.cfc?method=getDataForJSVersion",
-			function(data){
-				applyLabels(data.records);
-				zingchart.render(configureChartParams(data));	
-			}
-		);
+    $(document).ready(function(){
+        var daoProxy = new DAOProxy();
+        var data = daoProxy.getData();
+        renderData($("#data-goes-here"), data);
+    });    
 
-		var applyLabels = function(records){
-			seriesColours = ["Green","Yellow","Purple"];
-			records.forEach(function(series, index){
-				series["background-color"] = seriesColours[index];
-			});
-			return records;
-		};
+I am using jQuery here as a matter of convenience; it's not related to the functionality of `<cfajaxproxy>`.
 
-		var configureChartParams = function(data){
-			return {
-				id		: "myChartDiv",
-				height	: 750,
-				width	: 1000,
-				data	: myChart = {
-					type	: "bar",
-					stacked	: true,
-					series	: data.records,
-					"scale-x"	: {
-						values:data.label
-					},
-					legend		: {}
-				}
-			};	
-		}
 
-	});
+With the data returned from `DAO.cfc`, and rendered with `renderData.js` (see below for the code for each of these files), this outputs:
+
+![&lt;cfajaxproxy&gt;](images/cfajaxproxy.png "&lt;cfajaxproxy&gt;")
+
+
+Now here is the same functionality, totally written in simple HTML and JavaScript (using jQuery for AJAX proxying functionality). 
+
+**Listing 3 : jquery.html**
+    
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery demo</title>
+        <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+        <script src="lib/js/renderData.js"></script>
+    </head>
+    <body>
+        <div id="data-goes-here"></div>
+        <script src="jquery.js"></script>
+    </body>
+    </html>
+
+This listing is virtually identical to the mark-up used in `cfajaxproxy.cfm`, above, except for not having the call to `<cfajaxproxy>`.
+
+
+**Listing 4 : jquery.js**
+    
+    $(document).ready(function(){
+        $.ajax(
+            "DAO.cfc?method=getData",
+            {
+                success : function(json){
+                    data = JSON.parse(json);
+                    renderData($("#data-goes-here"), data);
+                }
+            }
+        );
+
+    });
 	
-	
-As you can see, the only mark-up needed is the myChartDiv `<div>`. The rest is done with JavaScript. It might seem like the JavaScript is complicated, but it boils down to a call to `zingchart.render()`, passing it an object containing data and config. As I said above I am using AJAX here to fetch the raw data from the server, but that is not a requirement, it could just as easily be inline JavaScript. Here's the render:
+The JavaScript here uses jQuery to handle an AJAX call back to `DAO.cfc` the ColdFusion server. When the AJAX call returns the data, it's converted back from JSON to a JavaScript object, then rendered using the same code as the previous example.
 
-![ZingChart](images/ZingChart.png "ZingChart")
+This demonstrates that all `<cfajaxproxy>` is really doing is making an AJAX call, and deserialising the returned JSON. Which is very easy to do with jQuery and native JavaScript.
 
-The styling is not exactly the same, but that's due to ColdFusion using different "default" styling than ZingCharts does.
 
-For completeness, here is the code for `DAO.cfc`:
+For completeness, here is the code for `DAO.cfc` and `renderData.js`, which are used in both examples:
 
 **Listing 5 : DAO.cfc**
 
     component {
 
-        remote struct function getDataForJSVersion() returnformat="json" {
+        remote struct function getData() returnformat="json" {
             return {
-                "labels"    = "Mon,Tue,Wed,Thu,Fri",
+                "labels"    = ["Mon","Tue","Wed","Thu","Fri"],
                 "records"    = [
                     {
                         "text"    ="Apples",
@@ -125,35 +104,36 @@ For completeness, here is the code for `DAO.cfc`:
                 ]
             };
         }
-
-        public query function getDataForCfmlVersion(){
-            return queryNew(
-                "id,day,item,total",
-                "integer,varchar,varchar,integer", [
-                    [1, "Mon", "Apples", 1],
-                    [4, "Tue", "Apples", 2],
-                    [7, "Wed", "Apples", 4],
-                    [10, "Thu", "Apples", 8],
-                    [13, "Fri", "Apples", 4],
-                    [2, "Mon", "Bananas", 10],
-                    [5, "Tue", "Bananas", 8],
-                    [8, "Wed", "Bananas", 6],
-                    [11, "Thu", "Bananas", 4],
-                    [14, "Fri", "Bananas", 6],
-                    [3, "Mon", "Cherries", 1],
-                    [6, "Tue", "Cherries", 3],
-                    [9, "Wed", "Cherries", 9],
-                    [12, "Thu", "Cherries", 3],
-                    [15, "Fri", "Cherries", 1]
-                ]
-            );
-        }
     }
+
+**Listing 6 : renderData.js**
+
+    renderData = function(element, data){
+        data.labels.forEach(function(day,i){
+            element.append("<h2>" + day + "</h2>")
+                .append(
+                    (function(){
+                        return "<ul>"
+                                + data.records.reduce(
+                                    function(previousValue,currentValue){
+                                        return previousValue + "<li>" + currentValue.text + ": " + currentValue.values[i] + "</li>";
+                                    },
+                                    ""
+                                )
+                                + "</ul>"
+                        ;
+                    })()
+                );
+            ;
+        });
+    };
+
+Note that I've factored `renderData.js` out into a different file purely to simplify the example code. All it does is render the data as per the screen shot above. Also note that I'd generally try to use a templating library here to separate the mark-up and the JavaScript a bit more clearly, but that's not in the scope of this chapter, which is just focusing on the AJAX proxying.
+
 
 Resources
 ---
-* [ZingCharts API documentation](http://www.zingchart.com/learn/docs.php)
-* [ZingChart Online Chart Builder](http://www.zingchart.com/builder/): design and build your chart using a GUI, which generates all the code necessary to render the chart.
+* [jQuery API documentation: .ajax()](https://api.jquery.com/jQuery.ajax/)
 
 
 Alternatives
