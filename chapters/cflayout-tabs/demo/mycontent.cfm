@@ -1,0 +1,1 @@
+<cfoutput>This is my <b>remote</b> content #Now()#</cfoutput>
