@@ -60,7 +60,7 @@ The following is an HTML5 implementation.
     </body>
     </html>
 
-![HTML5 Examaple](images/date1.png)
+![HTML5 Examaple](images/date1.PNG)
 
 Well that was easy but it won't work in legacy browsers.
 
@@ -110,7 +110,7 @@ The **startDate** and **endDate** elements both have the same class called **dat
 
 And when we click in either of the date input boxes we get :-
 
-![jQuery Examaple](images/date2.png)
+![jQuery Examaple](images/date2.PNG)
 
 For further information you can reference :-
 
