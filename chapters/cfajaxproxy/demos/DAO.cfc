@@ -1,7 +1,7 @@
 // DAO.cfc
 component {
 
-	remote struct function getData() returnformat="json" {
+	remote struct function getData() {
 		return {
 			"labels"	= ["Mon","Tue","Wed","Thu","Fri"],
 			"records"	= [

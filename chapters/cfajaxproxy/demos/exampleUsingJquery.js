@@ -1,7 +1,7 @@
 // jquery.js
 $(document).ready(function(){
 	$.ajax(
-		"DAO.cfc?method=getData",
+		"DAO.cfc?method=getData&returnformat=json",
 		{
 			success	: function(json){
 				data = JSON.parse(json);
