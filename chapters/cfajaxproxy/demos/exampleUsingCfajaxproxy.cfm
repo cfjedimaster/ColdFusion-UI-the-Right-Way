@@ -10,6 +10,6 @@
 <body>
 <div id="data-goes-here"></div>
 
-<script src="cfajaxproxy.js"></script>
+<script src="exampleUsingCfajaxproxy.js"></script>
 </body>
 </html>
