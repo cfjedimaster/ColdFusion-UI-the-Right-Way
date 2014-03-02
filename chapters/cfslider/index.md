@@ -37,7 +37,7 @@ In the example below you will notice I have added a text box to serve as a visua
     </body>
     </html>
 
-![CFSLIDER Examaple](images/slider1.png)
+![CFSLIDER Examaple](images/s1.png)
 
 Once again there are many ways to achieve the same thing using a jQuery plugin or even just HTML5.
 
@@ -68,7 +68,7 @@ The following is an HTML5 implementation.
     </body>
     </html>
 
-![HTML5 Examaple](images/slider2.png)
+![HTML5 Examaple](images/s2.png)
 
 And yes that's not going to work to well in legacy browsers.
 
@@ -106,7 +106,7 @@ Here's another implementation using jQuery and jQuery UI.
     </body>
     </html>
 
-![jQuery Examaple](images/slider3.png)
+![jQuery Examaple](images/s3.png)
 
 Here we are loading the styles and the jQuery code we need in the `<head>`.
 

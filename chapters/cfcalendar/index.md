@@ -60,7 +60,7 @@ The following is an HTML5 implementation.
     </body>
     </html>
 
-![JavaScript Example](images/date1.png)
+![HTML5 Examaple](images/d1.PNG)
 
 Well that was easy but it won't work in legacy browsers.
 
@@ -110,16 +110,11 @@ The **startDate** and **endDate** elements both have the same class called **dat
 
 And when we click in either of the date input boxes we get :-
 
-![jQuery Examaple](images/date2.png)
+![jQuery Examaple](images/d2.PNG)
 
 For further information you can reference :-
 
 * [CFCALENDAR](http://livedocs.adobe.com/coldfusion/8/htmldocs/help.html?content=Tags_c_02.html)
 * [JQUERY](http://jquery.com/)
 * [JQUERY UI](http://jqueryui.com)
-
-Alternatives
----
-
-* Don't forget that many modern browsers support input type="date". This requires no JavaScript at all and falls back to a regular text field that can still be edited by the user.
 
