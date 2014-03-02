@@ -31,7 +31,7 @@ In the example below taken from [Adobe](http://livedocs.adobe.com/coldfusion/8/h
 
 This is the output :-
 
-![CFTABLE Example](images/table1.png)
+![CFTABLE Example](images/t1.png)
 
 According to the documentation you **cannot** nest cftable tags.
 
@@ -77,7 +77,7 @@ We can build a TABLE using HTML and our static data and query like this :-
     </cfoutput>
     </html>
 
-![HTML Example](images/table2.png)
+![HTML Example](images/t2.png)
 
 Of course you can use CSS to make the table look fancy but I just kept it simple here.
 
