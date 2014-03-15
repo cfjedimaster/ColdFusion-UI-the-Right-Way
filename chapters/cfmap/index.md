@@ -20,7 +20,7 @@ Here's an example using `<cfmap>` to render a basic satellite map of [Whatipu](h
 
 This renders:
 
-![&lt;cfmap&gt;](images/exampleUsingCfMap.png "&lt;cfmap&gt;")
+![&lt;cfmap&gt;](images/exampleUsingCfmap.png "&lt;cfmap&gt;")
 
 
 Now here is an analogous map, totally written in simple HTML, JavaScript and CSS. 
