@@ -152,7 +152,7 @@ For completeness, here is the code for `DAO.cfc`:
 
 Resources
 ---
-* [ZingCharts API documentation](http://www.zingchart.com/learn/docs.php)
+* [ZingCharts API documentation](http://www.zingchart.com/docs/)
 * [ZingChart Online Chart Builder](http://www.zingchart.com/builder/): design and build your chart using a GUI, which generates all the code necessary to render the chart.
 
 
