@@ -1,0 +1,12 @@
+ul li {
+	display: inline-block;
+    list-style-type: none;
+    cursor: pointer; cursor: hand;
+}
+.media-thumbnail {
+	height: 150px;
+	width: 200px;
+}
+
+
+
