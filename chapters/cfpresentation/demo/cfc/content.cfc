@@ -4,6 +4,7 @@
     <cfinclude template="data.cfm">
     <!--- GET THE SLIDE DECK DATA --->
     <cffunction name="srcSlideDecks" access="public" returntype="query">
+        <cfset var qrySlideDecks = ''>
         <cfquery name="qrySlideDecks" dbtype="query">
             SELECT *
             FROM tblSlideDecks
@@ -13,6 +14,7 @@
     <!--- GET THE SLIDE DATA OF A PARTICULAR SLIDE --->
     <cffunction name="srcSlides" access="public" returntype="query">
         <cfargument name="deck_id" required="true" default="1">
+        <cfset var qrySlides = ''>
         <cfquery name="qrySlides" dbtype="query">
             SELECT *
             FROM tblSlides
@@ -23,10 +25,10 @@
     <!--- BUILD THE SLIDE DECK --->
     <cffunction name="srcSlideDeck" access="remote" returntype="string" returnformat="plain">
         <cfargument name="slide_deck_id" required="true">
-        <cfset strDeck = ''>
-        <cfset strDiv  = ''>
+        <cfset var strDeck = ''>
+        <cfset var strDiv  = ''>
         <!--- FIRST WE OBTAIN ALL THE SLIDES RELATING TO THE SLIDE DECK CHOSEN --->
-        <cfset qrySlides = srcSlides(deck_id=ARGUMENTS.slide_deck_id) />
+        <cfset var qrySlides = srcSlides(deck_id=ARGUMENTS.slide_deck_id) />
         <!--- NOW WE LOOP OVER EACH SLIDE AND BUILD THE <div> FOR IT --->
         <cfloop query="qrySlides">
             <cfset strDiv  = ''>
