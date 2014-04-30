@@ -1,0 +1,21 @@
+ul#feeds li {
+    list-style-type: none;
+}
+.feedlist {
+	overflow-y:scroll;
+	height:100px;
+	width: 600px;
+	margin-bottom: 10px;
+	border-left: 1px solid grey;
+	border-right: 1px solid grey;
+	border-bottom: 1px solid grey;
+}
+.innerlist{
+    list-style-type: none;
+    padding-left: 3px;	
+}
+.title {
+	background-color: grey;
+	color: white;
+	padding-left: 3px;
+}
