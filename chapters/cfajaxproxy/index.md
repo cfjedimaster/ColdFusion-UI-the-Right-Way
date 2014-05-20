@@ -5,7 +5,7 @@ The `<cfajaxproxy>` tag provides the ability to create a JavaScript proxy "class
 
 Here is a very basic demonstration of using `<cfajaxproxy>` to create a JavaScript proxy object to fetch data from the ColdFusion server:
 
-**Listing 1 : cfajaxproxy.cfm**
+**Listing 1 : exampleUsingCfajaxproxy.cfm**
     
     <!doctype html>
     <html lang="en">
@@ -18,13 +18,13 @@ Here is a very basic demonstration of using `<cfajaxproxy>` to create a JavaScri
     </head>
     <body>
         <div id="data-goes-here"></div>
-        <script src="cfajaxproxy.js"></script>
+        <script src="exampleUsingCfajaxproxy.js"></script>
     </body>
     </html>
 
 Note that even with the `<cfajaxproxy>` tag, one still needs to use JavaScript to *use* the proxy:
 
-**Listing 2 : cfajaxproxy.js**
+**Listing 2 : exampleUsingCfajaxproxy.js**
     
     $(document).ready(function(){
         var daoProxy = new DAOProxy();
@@ -42,7 +42,7 @@ With the data returned from `DAO.cfc`, and rendered with `renderData.js` (see be
 
 Now here is the same functionality, totally written in simple HTML and JavaScript (using jQuery for AJAX proxying functionality). 
 
-**Listing 3 : jquery.html**
+**Listing 3 : exampleUsingJquery.html**
     
     <!doctype html>
     <html lang="en">
@@ -54,14 +54,14 @@ Now here is the same functionality, totally written in simple HTML and JavaScrip
     </head>
     <body>
         <div id="data-goes-here"></div>
-        <script src="jquery.js"></script>
+        <script src="exampleUsingJquery.js"></script>
     </body>
     </html>
 
-This listing is virtually identical to the mark-up used in `cfajaxproxy.cfm`, above, except for not having the call to `<cfajaxproxy>`.
+This listing is virtually identical to the mark-up used in `exampleUsingCfajaxproxy.cfm`, above, except for not having the call to `<cfajaxproxy>`.
 
 
-**Listing 4 : jquery.js**
+**Listing 4 : exampleUsingJquery.js**
     
     $(document).ready(function(){
         $.ajax(
