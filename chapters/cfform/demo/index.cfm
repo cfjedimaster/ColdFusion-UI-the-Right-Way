@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=1024" />
     <title>CFFORM - ALTERNATIVE</title>
     <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 </head>
 <body>
 <cfoutput>
     <cfif IsDefined("FORM.submitit")>
         <cfdump var="#form#"><br>
     </cfif>
-    <form name="myform" action="index.cfm" type="post">
+    <form id="myform" name="myform" action="index.cfm" enctype="multipart/form-data" method="post">
         <ul>
+            <li>Validation Type:</li>
+            <li>
+                <input id="radValidationType" name="radValidationType" type="radio" value="manual" checked>Manual
+                <input id="radValidationType" name="radValidationType" type="radio" value="JV">JV (jQuery Validation)
+            </li>
             <li>Name:</li>
             <li><input id="name" name="name" type="text" size="25"></li>
             <li>E-mail:</li>
@@ -27,7 +34,6 @@
 </cfoutput>
 </body>
 <footer>
-    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 </footer>
 </html>
