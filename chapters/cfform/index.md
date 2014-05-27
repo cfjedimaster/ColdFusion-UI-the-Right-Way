@@ -15,9 +15,9 @@ Now **IF** you have have refactored your code so that you do not need to use  CF
 
 So here I am going to address that with a simple demo.
 
+This demo has two validation methods, a manual one and one that uses the [.validate](http://http://jqueryvalidation.org/) jQuery plugin.
+
 Let's start with a `<cfform>` example that I have tweaked so that it looks almost like the alternative that I am going to give you.
-
-
 
 **Listing 1 : cfform.cfm**
 
@@ -61,7 +61,7 @@ Let's start with a `<cfform>` example that I have tweaked so that it looks almos
 
 Ok so thats how you do it with `<cfform>` but there is already a problem, it does not compare the PASSWORDS to see if they match. So right off the bat you have to figure out how to do that.
 
-So here is an alternative just using some simple jQuery to validate the input.
+So here is an alternative just using some simple jQuery OR the [.validate](http://http://jqueryvalidation.org/) jQuery plugin to validate the input.
 
 This is just a demo, for production you should also **validate with CF** after the form has been submitted.
 
@@ -74,14 +74,21 @@ This is just a demo, for production you should also **validate with CF** after t
         <meta name="viewport" content="width=1024" />
         <title>CFFORM - ALTERNATIVE</title>
         <link rel="stylesheet" type="text/css" href="css/custom.css">
+        <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
     </head>
     <body>
     <cfoutput>
         <cfif IsDefined("FORM.submitit")>
             <cfdump var="#form#"><br>
         </cfif>
-        <form name="myform" action="index.cfm" type="post">
+        <form id="myform" name="myform" action="index.cfm" enctype="multipart/form-data" method="post">
             <ul>
+                <li>Validation Type:</li>
+                <li>
+                    <input id="radValidationType" name="radValidationType" type="radio" value="manual" checked>Manual
+                    <input id="radValidationType" name="radValidationType" type="radio" value="JV">JV (jQuery Validation)
+                </li>
                 <li>Name:</li>
                 <li><input id="name" name="name" type="text" size="25"></li>
                 <li>E-mail:</li>
@@ -96,7 +103,6 @@ This is just a demo, for production you should also **validate with CF** after t
     </cfoutput>
     </body>
     <footer>
-        <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </footer>
     </html>
@@ -106,11 +112,13 @@ And here is the jQuery. ( The code is documented to help you ).
 **Listing 3 : main.js**
 
     //THIS FUNCTION CHECKS THAT A VALID EMAIL HAS BEEN ENTERED
+    //THIS IS ONLY USED WHEN manual VALIDATION IS SELECTED
     function validateEmail(email) { 
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
-    } 
-    $(document).on( "click", "#submitit", function(e) {
+    }
+    //THIS FUNCTION IS CALLED WHEN THE RADIO BUTTO IS SET TO manual
+    function validationManual(){
         //HERE WE BUILD THE ERROR MESSAGE ( IF THERE IS ONE )
         var strErrMessage = '';
         //CHECK THAT A name HAS BEEN ENTERED
@@ -119,7 +127,7 @@ And here is the jQuery. ( The code is documented to help you ).
         }
         //CHECK THAT AN email HAS BEEN ENTERED AND THAT IT IS VALID
         if(!validateEmail($("#email").val())) {
-            strErrMessage += 'You must enter a valid e-mail address..\n';
+            strErrMessage += 'You must enter a valid e-mail address.\n';
         }
         //CHECK THAT password1 HAS BEEN ENTERED
         if($("#password1").val() === '') {
@@ -140,9 +148,34 @@ And here is the jQuery. ( The code is documented to help you ).
         //AND DISPLAY THE ERROR MESSAGE
         if(strErrMessage !== '') {
             alert(strErrMessage);
-            event.preventDefault();
+        }
+    }
+    //THIS FUNCTION IS CALLED WHEN THE RADIO BUTTO IS SET TO JV
+    function validationJV(){
+        //HERE WE SET UP THE RULES AND CALL THE VALIDATION ON THE myform ELEMENT
+        $( "#myform" ).validate({
+            rules: {
+                name: "required",
+                email: "email",
+                password1: "required",
+                password2: {
+                    equalTo: "#password1"
+                }
+            }
+        });
+    }
+    $(document).on( "click", "#submitit", function(e) {
+        //GET THE SELECTED RADIO BUTTON VALUE
+        var radType = $('input[name=radValidationType]:checked', '#myform').val();
+        //CHOOSE THE CORRECT VALIDATION BASED ON THE RADIO BUTTON SELECTION
+        if(radType === 'manual') {
+            validationManual();
+        }
+        else {
+            validationJV();
         }
     });
+
 
 And there is a tiny bit of CSS.
 
@@ -155,4 +188,5 @@ And there is a tiny bit of CSS.
 For further information you can reference :-
 
 * [CFFORM](http://livedocs.adobe.com/coldfusion/8/htmldocs/help.html?content=Tags_f_13.html)
+* [.validate jQuery Plugin](http://http://jqueryvalidation.org/)
 
