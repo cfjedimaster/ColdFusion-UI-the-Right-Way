@@ -60,7 +60,7 @@ The following is an HTML5 implementation.
     </body>
     </html>
 
-![HTML5 Examaple](images/d1.PNG)
+![HTML5 Examaple](images/d1.png)
 
 Well that was easy but it won't work in legacy browsers.
 
