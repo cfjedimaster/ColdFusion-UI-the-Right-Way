@@ -110,7 +110,7 @@ The **startDate** and **endDate** elements both have the same class called **dat
 
 And when we click in either of the date input boxes we get :-
 
-![jQuery Examaple](images/d2.PNG)
+![jQuery Examaple](images/d2.png)
 
 For further information you can reference :-
 
