@@ -1,0 +1,8 @@
+ul li {
+	margin-left: -20px;
+    margin-bottom: 5px;
+    list-style-type: none;
+}
+.msg {
+	color: blue;
+}

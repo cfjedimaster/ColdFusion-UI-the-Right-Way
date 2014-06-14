@@ -1,0 +1,19 @@
+<cfset tblData=queryNew(
+    "id,name",
+    "integer,varchar",
+[
+    {   
+        id:1,
+        name:'Bacon'
+    }
+    ,
+    {   
+        id:2,
+        name:'Beer'
+    }
+    ,
+    {   
+        id:3,
+        name:'Bread'
+    }
+])>
