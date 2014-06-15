@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
-    <title>CFFORM - ALTERNATIVE</title>
+    <title>CFFORM - VALIDATE</title>
     <link rel="stylesheet" type="text/css" href="css/custom.css">
     <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>

@@ -1,4 +1,4 @@
-CFFORM
+CFFORM-VALIDATE
 ===
 
 On **Ray Camden's** blog there is a [Post](http://www.raymondcamden.com/index.cfm/2014/5/12/ColdFusion-UI-The-Right-Way--An-Update-and-Thanks#more) where **John Pullman** likes the idea of not using CF-UI tags anymore, but is hesitant due to the following.

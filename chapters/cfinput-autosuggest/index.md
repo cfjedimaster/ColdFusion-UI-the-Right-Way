@@ -1,4 +1,4 @@
-CFINPUT
+CFINPUT-AUTOSUGGEST
 ===
 
 The `<cfinput>` tag acts like an `<input>` tag and allows bindings to data.
