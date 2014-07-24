@@ -1,7 +1,7 @@
 cflayout Tabs
 ===
 
-The &lt;cflayout&gt; tag is an unfortunate layout catchall, with many different configurations, on of which provides the ability to create tabbed interfaces. As an example:
+The &lt;cflayout&gt; tag is an unfortunate layout catchall, with many different configurations, one of which provides the ability to create tabbed interfaces. As an example:
 
     <cflayout type="tab" tabHeight="200">
         <cflayoutarea title="Static">
