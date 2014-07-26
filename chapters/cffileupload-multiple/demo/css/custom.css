@@ -1,0 +1,21 @@
+ul li {
+    list-style-type: none;
+}
+#dropFiles {
+	height: 200px; 
+	width: 400px; 
+	line-height: 100px; 
+	background-color: #cccccc;
+	color: #000000; 
+	border: 1px solid #000000;
+	text-align: center;
+}
+.uploading {
+	color: grey;
+}
+.complete {
+	color: green;
+}
+.error {
+	color: red;
+}
