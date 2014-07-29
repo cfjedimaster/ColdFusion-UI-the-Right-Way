@@ -46,7 +46,7 @@ And now we call **getInterval** using AJAX :-
             strURL += 'method=' + method;
             $.ajax({
                 url: strURL,
-                dataType: 'json',
+                dataType: 'text',
                 success: function(response){
                     var currentValue = $("#progressbar").val();
                     var newValue = currentValue + response;
