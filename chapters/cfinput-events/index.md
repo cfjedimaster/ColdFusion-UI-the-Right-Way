@@ -138,7 +138,6 @@ In listing 1 we are using a call to a cfc to get the data that feeds into the on
     <cfcomponent>
         <cfinclude template="data.cfm">
         <cffunction name="srcData" access="public" returntype="query">
-            <cfset var qrySlideDecks = ''>
             <cfquery name="qryData" dbtype="query">
                 SELECT *
                 FROM tblData
