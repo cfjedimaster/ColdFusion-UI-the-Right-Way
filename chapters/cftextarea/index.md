@@ -65,7 +65,7 @@ And now the alternative to `<cftextarea>`.
             </div>
             #textarea_1#
         </cfoutput>
-        <script src="js/ckeditor/ckeditor.js"></script>
+        <script src="//cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
         <script type="text/javascript">
             CKEDITOR.replace('textarea_1');
         </script>
