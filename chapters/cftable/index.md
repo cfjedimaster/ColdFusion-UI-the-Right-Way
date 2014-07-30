@@ -1,7 +1,7 @@
 CFTABLE
 ===
 
-The `<cftable>` tag creates a table, who knew, go figure.
+The `<cftable>` tag creates a table.  Who knew? Go figure.
 
 In the example below taken from [Adobe](http://livedocs.adobe.com/coldfusion/8/htmldocs/help.html?content=Tags_t_01.html) you will notice I have added some static data, I will use this throughout the examples :-
 
