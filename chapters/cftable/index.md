@@ -35,7 +35,7 @@ This is the output :-
 
 According to the documentation you **cannot** nest cftable tags.
 
-Not good, looks awful. You could mess about with the tag and make it look OK, but you already know that you have to learn CSS and javascript/jQuery.
+Not good, looks awful. You could mess about with the tag and make it look OK, but you already know that you have to learn CSS and JavaScript/jQuery.
 
 We can build a TABLE using HTML and our static data and query like this :-
 
@@ -58,9 +58,9 @@ We can build a TABLE using HTML and our static data and query like this :-
             <table>
                 <thead>
                     <tr>
-                        <td><strong>Name</strong></td>
-                        <td><strong>Age</strong></td>
-                        <td><strong>Description</strong></td>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
