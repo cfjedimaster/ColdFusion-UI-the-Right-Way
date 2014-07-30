@@ -110,7 +110,7 @@ Here's another implementation using jQuery and jQuery UI.
 
 Here we are loading the styles and the jQuery code we need in the `<head>`.
 
-Then we initialsise the slider with a bit of jQuery.
+Then we initialize the slider with a bit of jQuery.
 
     $("#sliderNo1").slider({ 
         min:1, 
