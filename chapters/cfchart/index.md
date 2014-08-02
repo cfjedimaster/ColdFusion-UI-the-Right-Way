@@ -159,4 +159,5 @@ Resources
 Alternatives
 ---
 
-* TBC
+* [Google Charts](https://developers.google.com/chart/)
+* [Chart.js](http://www.chartjs.org/)
