@@ -74,4 +74,4 @@ Resources
 Alternatives
 ---
 
-* TBC
+* [Google Maps Web Component](http://googlewebcomponents.github.io/google-map/components/google-map/#google-map)
