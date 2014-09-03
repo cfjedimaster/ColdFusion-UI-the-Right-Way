@@ -8,6 +8,7 @@ ColdFusion UI - The Right Way
 * [cfcalendar](cfcalendar/index.html)
 * [cfchart](cfchart/index.html)
 * [cfdiv](cfdiv/index.html)
+* [cffile - upload multiple](cffileupload-multiple/index.html)
 * [cfform - validation](cfform-validate/index.html)
 * [cfgrid](cfgrid/index.html)
 * [cfinput - autosuggest](cfinput-autosuggest/index.html)
@@ -27,5 +28,7 @@ ColdFusion UI - The Right Way
 * [cftooltip](cftooltip/index.html)
 * [cftree](cftree/index.html)
 * [cfwindow](cfwindow/index.html)
+
+This edition of the guide was generated %DATE%.
 
 
