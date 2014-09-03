@@ -162,3 +162,4 @@ Alternatives
 * [Google Charts](https://developers.google.com/chart/)
 * [Chart.js](http://www.chartjs.org/)
 * [Chartist.js](http://gionkunz.github.io/chartist-js)
+* [ZingChart](http://www.zingchart.com)
