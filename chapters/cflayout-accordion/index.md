@@ -27,7 +27,7 @@ Similar to the tabbed layout created in the cflayout-tabs chapter, the &lt;cflay
 
 Embedding this code on a webpage will result in an accordion interface with 3 distinct sections that can be expanded and collapsed. The content for the first 2 accordion sections is written directly into the page markup. The content for the last accordion section is loaded dynamically from the "alwest.cfm" file as specified in the "source" attribute. 
 
-The cflayout-tabs chapter uses the Bootstrap Tabs plugin as an alternative method to create the tabbed layout. The same plugin can be used just as effectively to accomplish the accordion layout. However, for an alternate perspective we'll use the [jQuery UI](https://jqueryui.com/) library in this chapter. 
+The cflayout-tabs chapter uses the Bootstrap Tabs plugin as an alternative method to create the tabbed layout. The same plugin can be used just as effectively to accomplish the accordion layout. However, for an alternate perspective we'll use [jQuery UI](https://jqueryui.com/) in this chapter. 
 
 Let's take a look at how to implement the same functionality using jQuery UI:
 **Listing 1 : index.cfm**
@@ -72,7 +72,28 @@ Let's take a look at how to implement the same functionality using jQuery UI:
             <script src="./resources/accordionscript.js"></script>
         </body>
     </html>
+Note that directly before the &lt;/body&gt; tag we are loading jQuery and jQuery UI - both are required. We are also loading our own JS file that will be used to initialize and listen for events on our accordion. Finally, you'll notice we include a stylesheet between the &lt;head&gt; tags that contains a standard jQuery UI theme to add some styling to our accordion. 
 
-Note that using jQuery UI also requires us to load jQuery. As you can see, directly before the &lt;/body&gt; tag we load jQuery, jQuery UI, and our own js file that we will use to initialize and listen for events on our accordion. We are also loading a stylesheet that contains a standard jQuery UI theme to add some styling to our accordion. 
+![Accordion](images/accordion.png)
 
-As you can see, the markup for our accordion interface is pretty simple. All the accordion panels are defined inside a parent &lt;div&gt; tab which we are assigning an ID of "accordion". By default, the &lt;h3&gt; tags found just below our parent div will be used as the panel headers. (This can be changed/customized if you prefer. Consult the [jQuery UI API Documentation](http://api.jqueryui.com/accordion/) for more information)
+As you can see, the markup for our accordion interface is pretty simple. All the accordion panels are defined inside a parent &lt;div&gt; tab which we are assigning an ID of "accordion". By default, the &lt;h3&gt; tags found just below our parent div will be used as the panel headers. (This can be changed/customized if you prefer. Consult the [jQuery UI API Documentation](http://api.jqueryui.com/accordion/) for more information).
+
+Just like the &lt;cflayout&gt; example, the content for the first 2 panels is embedded directly into the page markup. The content for the last panel is going to be loaded from an external source. To accomplish this we need to indicate where to fetch the content from, and where to load it. There are various ways to do that, but we are going to use *data-* attributes on the &lt;h3&gt; tag. The *data-content* attribute will let us know where to get the panel content, and the *data-target* attributue will let us know where to insert the content into our page.
+
+**Listing 2 : accordionscript.js**
+
+    $(function() {
+        $("#accordion").accordion({
+            beforeActivate: function(event, ui) {
+                var $header = ui.newHeader,
+                    content = $header.data("content"),
+                    target = $header.data("target");
+                if (content !== undefined && target !== undefined) {
+                    $(target).load(content);
+                }
+            }
+        });
+    });
+Generally, we can simply initialize our accordion by using *$("#accordion).accordion()*. However, because we want to load some remote content we need to be a little more advanced and add some additional configuration settings when we initialize our accordion. Again, refer to the [jQuery UI API Documentation](http://api.jqueryui.com/accordion/) for more information.
+
+The beforeActivate option allows us to take action on a particular panel before it is activated. We'll take advantage of this by checking to see if the *data-content* and *data-target* attributes are specified on the panel header, and if so, load the content as directed. 
