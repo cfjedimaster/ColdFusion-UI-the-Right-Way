@@ -1,7 +1,7 @@
 cflayout Accordion
 ===
 
-Similar to the tabbed layout created in the cflayout-tabs chapter, the &lt;cflayout&gt; tag can also create an "accordion" layout. Accordion layouts contain one or more panel-like areas that can be expanded and collapsed by the user. Here is an example of how to create an accordion layout using the &lt;cflayout&gt; tag:
+Similar to the tabbed layout created in the [cflayout Tabs](https://github.com/cfjedimaster/ColdFusion-UI-the-Right-Way/blob/master/chapters/cflayout-tabs/index.md) chapter, the &lt;cflayout&gt; tag can also create an "accordion" layout. Accordion layouts contain one or more panel-like areas that can be expanded and collapsed by the user. Here is an example of how to create an accordion layout using the &lt;cflayout&gt; tag:
 
     <cflayout type="accordion" height="300">
         <cflayoutarea title="American League - East">
