@@ -5,4 +5,4 @@ This project was created to help lead ColdFusion developers away from the multip
 
 This repo contains both text as well as samples you can run in your local environment. All samples will work without a datasource and should require no setup. 
 
-The HTML version may be found here: [http://static.raymondcamden.com/cfuitherightway/](http://static.raymondcamden.com/cfuitherightway/)
+The HTML version may be found here: [https://static.raymondcamden.com/cfuitherightway/index.html](https://static.raymondcamden.com/cfuitherightway/index.html)
