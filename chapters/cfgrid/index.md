@@ -88,6 +88,8 @@ And the CFC.
         </cffunction>
     </cfcomponent>
 
+The tblData query is defined via code as a simulated query in [data.cfm](demo/cfc/data.cfm).
+
 For further information you can reference :-
 
 * [CFPOD](http://livedocs.adobe.com/coldfusion/8/htmldocs/help.html?content=Tags_p-q_07.html)
